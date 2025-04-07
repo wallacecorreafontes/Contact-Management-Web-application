@@ -8,6 +8,12 @@ use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+
     public function index()
     {
         $contacts = Contact::paginate(10);
