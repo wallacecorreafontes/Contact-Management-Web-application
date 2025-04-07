@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', fn() => redirect()->route('contacts.index'));
+
+Route::resource('contacts', ContactController::class)->only(['index', 'show']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('contacts', ContactController::class)->except(['index', 'show']);
 });
