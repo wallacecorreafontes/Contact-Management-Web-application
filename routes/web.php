@@ -7,7 +7,7 @@ Route::get('/', fn() => redirect()->route('contacts.index'));
 
 // Rotas públicas (listar e visualizar contatos)
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
-Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
+Route::get('/contacts/{contact}/show', [ContactController::class, 'show'])->name('contacts.show');
 
 // Grupo protegido por autenticação (CRUD restante)
 Route::middleware('auth')->group(function () {
